@@ -4,7 +4,7 @@ import Hero from './components/Hero'
 import Navbar from './components/Navbar'
 import Services from './components/Services'
 import Tours from './components/Tours'
-import logo from './logo.svg'
+// import logo from './logo.svg'
 
 function App() {
   return (
