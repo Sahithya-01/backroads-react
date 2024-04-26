@@ -2,395 +2,74 @@
 
 #Deployed website at (https://sahithya-backroads-app.netlify.app/)
 
-- backroads-html - working html/css/javascript project (contains assets)
-- final(complete source code) - working react application
-  - navigate to the folder
-  - run 'npm install'
-  - once the dependencies are installed run 'npm start'
 
-#### Create New React App
 
-- install
+# Backroads App
 
-```sh
-npx create-react-app@latest backroads-app
-```
+## Overview
 
-- run dev server
+Backroads App is a React application developed for [insert purpose or description here]. It utilizes React components to create a dynamic and responsive user interface. The project is structured to ensure easy management and scalability.
 
-```sh
-npm start
-```
+## Features
 
-#### SRC Folder (boilerplate)
-
-- index.js
-
-```js
-import React from 'react'
-import ReactDOM from 'react-dom/client'
-
-// styles (typically global)
-import './index.css'
-
-// convention to name it App and setup in a separate file
-import App from './App'
-// import report web vitals
-import reportWebVitals from './reportWebVitals'
-
-// StrictMode
-
-// StrictMode is a tool for highlighting potential problems in an application.Activates additional checks and warnings for its descendants.Runs only in Development, does not impact the production build. RENDERS TWICE !!! Possible to remove.
-
-const root = ReactDOM.createRoot(document.getElementById('root'))
-root.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
-)
+- **Responsive Design**: The application is designed to work seamlessly across various devices and screen sizes.
+- **Smooth Scroll**: Implemented smooth scrolling functionality for a better user experience.
+- **Page Links**: Navigation links are dynamically generated from a data file for easy maintenance.
+- **Social Links**: Social media icons with links are displayed in the navigation bar.
+- **Hero Section**: A hero section with customizable title and image.
+- **About Section**: Provides information about the application or organization.
+- **Services Section**: Displays a list of services with icons and descriptions.
+- **Tours Section**: Displays featured tours with dates,price and duration.
+- **Footer**: Footer section with links and social media icons.
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals()
-```
+## Getting Started
 
-- remove in src
-
-  - setupTests.js
-  - reportWebVitals.js
-  - App.test.js
-
-- be careful with multiple css files
-
-App.js
-
-```js
-function App() {
-  return <h1>backroads app</h1>
-}
-
-export default App
-```
-
-- remove
-  - remove logo.svg
-  - App.css
-
-#### Setup Structure
-
-- public/index.html
-
-  - change title
-  - copy/paste font-awesome link (from html project)
-
-- index.css
-
-  - copy/paste css (from html project - css/styles.css)
-  - error in line 209, just comment out for now
-
-```css
-@media screen and (min-width: 768px) {
-  /* .hero {
-    background: linear-gradient(rgb(44, 174, 186, 0.7), rgba(0, 0, 0, 0.7)),
-      url('../images/main.jpeg') center/cover no-repeat;
-  } */
-}
-```
-
-- src folder
-  - copy/paste images folder (from html project)
-  - move favicon.ico to public
-- App.js
-  - refactor to <React.Fragment>
-  - copy/paste all the content within body tags, up to <script> (index.html)
-  - select all "class" instances and refactor to "className" (CMD + D)
-  - fix the comment bug (remove or comment out)
-  - don't worry about - Using target="\_blank" without rel="noreferrer" warning,
-    will fix it later
-  - move README.md from final to current project
-
-#### Setup Components
-
-- in src create components folder
-- in the components create following files
-  - Navbar.js
-  - Hero.js
-  - About.js
-  - Services.js
-  - Tours.j
-  - Footer.js
-- setup components with default export (snippet - rafce)
-- carefully move the code from App.js into components (files)
-  - hint - look for navbar, footer and section tags
-- App.js should be empty
-- import and render all components in App.js (try auto imports)
-- result is going to be the same, it's just easier to manage the code
-- again, it's just my preference to split up code in such way.
-  You can split it up in any way that makes the most sense to you.
-
-#### Navbar
-
-- first let's fix the image (logo)
-  - setup import from images and update source
-
-```js
-// import
-import logo from '../images/logo.svg'
-
-// JSX
-;<img src={logo} className='nav-logo' alt='backroads' />
-```
-
-#### Smooth Scroll
-
-- html/css feature
-
-```html
-<!-- link -->
-<a href="#services"> services </a>
-<!-- element -->
-<section id="services"></section>
-```
-
-```css
-html {
-  scroll-behavior: smooth;
-}
-.section {
-  /* navbar height */
-  scroll-margin-top: 4rem;
-}
-```
-
-#### Page Links
-
-- refactor repeating code
-
-```js
-<li>
-  <a href='#home' className='nav-link'>
-    home
-  </a>
-</li>
-```
-
-- figure out which data is repeating hint (href, text )
-- in src create data.js and setup a structure
-  - (hint - [{property:value},{property:value}])
-- export/import iterate over the list,return elements and inject data
-
-```js
-export const pageLinks = [
-  { id: 1, href: '#home', text: 'home' },
-  { id: 2, href: '#about', text: 'about' },
-  { id: 3, href: '#services', text: 'services' },
-  { id: 4, href: '#tours', text: 'tours' },
-]
-```
-
-```js
-import { pageLinks } from '../data'
-
-{
-  pageLinks.map((link) => {
-    return (
-      <li key={link.id}>
-        <a href={link.href} className='nav-link'>
-          {link.text}
-        </a>
-      </li>
-    )
-  })
-}
-```
-
-#### Nav Icons (social-links)
-
-- repeat the same steps (as with page links)
-- add rel='noreferrer'
-
-```js
-{
-  socialLinks.map((link) => {
-    const { id, href, icon } = link
-    return (
-      <li key={id}>
-        <a href={href} target='_blank' rel='noreferrer' className='nav-icon'>
-          <i className={icon}></i>
-        </a>
-      </li>
-    )
-  })
-}
-```
-
-#### Hero
-
-- change title or text (optional)
-- fix the image (path in css)
-
-#### About
-
-- fix the image (hint - just like with logo in the navbar)
-
-#### Section Title
-
-- in components create Title.js
-- get the structure from one of the sections
-- setup two props
-- replace in About, Services, Tours
-
-```js
-const Title = ({ title, subTitle }) => {
-  return (
-    <div className='section-title'>
-      <h2>
-        {title} <span>{subTitle}</span>
-      </h2>
-    </div>
-  )
-}
-export default Title
-```
-
-About.js
-
-```js
-// import
-import Title from './Title'
-
-// display
-;<Title title='about' subTitle='us' />
-```
-
-#### Services
-
-- refactor repeating code (hint - just like with page and social links)
-  - setup data, export/import, iterate
-
-data.js
-
-```js
-export const services = [
-  {
-    id: 1,
-    icon: 'fas fa-wallet fa-fw',
-    title: 'saving money',
-    text: 'Lorem ipsum dolor sit amet consectetur adipisicing elit.Asperiores, officia',
-  },
-  // rest of the objects
-]
-```
-
-Services.js
-
-```js
-import Title from './Title'
-import { services } from '../data'
-const Services = () => {
-  return (
-    <section className='section services' id='services'>
-      <Title title='our' subTitle='services' />
-
-      <div className='section-center services-center'>
-        {services.map((service) => {
-          const { id, icon, title, text } = service
-          return (
-            <article className='service' key={id}>
-              <span className='service-icon'>
-                <i className={icon}></i>
-              </span>
-              <div className='service-info'>
-                <h4 className='service-title'>{title}</h4>
-                <p className='service-text'>{text}</p>
-              </div>
-            </article>
-          )
-        })}
-      </div>
-    </section>
-  )
-}
-export default Services
-```
-
-#### Tours
-
-- refactor repeating code
-
-#### Footer
-
-- refactor repeating code
-- re-use page and social links
-- in the <span id="date">provide current year (hint - {})
-
-#### Alternative Approach (optional)
-
-- in components create PageLinks.js
-- import pageLinks
-- return the entire list and replace current setup in Navbar, Footer
-- "gotcha"
-  - the more "moving parts" you will have the harder it's going to be to manage
-  - my personal preference, if possible just use data
-
-#### Challenge (optional)
-
-- create more components (essentially, split up the code more)
-- find all map methods and move elements to separate components
-- By the end of the video you should have four additional components
-  - Tour.js
-  - Service.js
-  - SocialLink.js
-  - PageLink.js
-
-#### Continuous Deployment
-
-- fix warnings (About Section)
-
-- netlify account
-- github account
-- basic git commands :
-
-  - remove existing git repo
-    - Mac : rm -rf .git
-    - Windows : rmdir -Force -Recurse .git
-    - Windows : rd /s /q .git
-      Windows commands were shared by students and I have not personally tested them.
-  - setup new repo
-    - git init
-      create an empty git repository
-    - git add
-      adds new or changed files in your working directory
-      to the Git staging area
-    - git add .
-      adds entire project
-      apart from files/directories specified in .gitignore
-    - git commit -m "first commit"
-      A shortcut command that immediately creates a commit
-      with a passed commit message.
-    - push to github
-      git remote add origin git@github.com:your-profile/repo-name.git
-      git branch -M main
-      git push -u origin main
-
-#### Benefits
-
-- don't need to keep project locally
-- automatic builds
-
-#### Warnings "Gotcha"
-
-- Netlify treats warnings as errors
-
-package.json
-
-```json
-"scripts": {
-    "start": "react-scripts start",
-    "build": "CI= react-scripts build",
-    "local-build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
-  },
-```
+Follow these steps to set up and run the Backroads App on your local machine:
+
+1. Clone the repository:
+
+   ```bash
+   git clone git@github.com:your-profile/backroads-app.git
+   ```
+
+2. Navigate to the project directory:
+
+   ```bash
+   cd backroads-app
+   ```
+
+3. Install dependencies:
+
+   ```bash
+   npm install
+   ```
+
+4. Start the development server:
+
+   ```bash
+   npm start
+   ```
+
+5. Open your browser and visit `http://localhost:3000` to view the application.
+
+## Folder Structure
+
+The project follows a structured folder hierarchy:
+
+- **`public/`**: Contains the index.html file and other static assets.
+- **`src/`**: Contains the source code of the application.
+  - **`components/`**: Contains individual React components used throughout the application.
+  - **`data.js`**: Defines data structures used in the application, such as page links and services.
+  - **`App.js`**: Main component where other components are imported and rendered.
+  - **`index.js`**: Entry point of the application.
+  - **`index.css`**: Global styles for the application.
+
+## Deployment
+
+The Backroads App can be deployed using platforms like Netlify or Vercel. Follow these steps for continuous deployment:
+
+1. Set up a Netlify account and connect it to your GitHub repository.
+2. Configure basic Git commands for repository management.
+3. Push changes to your GitHub repository.
+4. Netlify will automatically build and deploy the application based on the changes pushed to the repository.
+
